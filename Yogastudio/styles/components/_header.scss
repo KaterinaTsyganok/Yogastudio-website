@@ -1,0 +1,123 @@
+.header {
+
+    font: 400 17px/1.2em 'Noto sans';
+
+    .content {
+        @include flex(space-between, center);
+        height: 120px;
+        position: relative;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        color: #393939;
+        @include locked-prop(font-size, (320px: 16px, 1024px: 18px), true);
+
+        &__text {
+
+            margin-left: -10px;
+
+            span {
+                font-weight: 700;
+            }
+        }
+    }
+
+    .mobilemenu {
+        width: 25px;
+        height: 20px;
+        position: relative;
+        cursor: pointer;
+        z-index: 3;
+    
+        @include media-min(768px) {
+            display: none;
+        }
+    
+        div,
+        &::before,
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #393939;
+        }
+    
+        &::after {
+            bottom: 0;
+        }
+    
+        div {
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            left: 0;
+            background-color: #393939;
+            top: 50%;
+            margin-top: -1px;
+        }
+    }
+
+    &__nav {
+
+        @include media-max(767px) {
+            position: fixed;
+            height: 100%;
+            right: 0;
+            top: 0;
+            padding: 50px 30px 20px;
+            background-color: white;
+            transform: translateY(-100%);
+            transition: .25s;
+            z-index: 2;
+            
+            &.active {
+                display: block;
+                transform: none;
+            }
+        }
+    }
+    
+    &__nav-list {
+        display: flex;
+        text-transform: uppercase;
+        
+        @include media-max(767px) {
+            flex-direction: column;
+            width: 100%;
+        }
+        
+        &-item {
+            position: relative;
+            @include locked-prop(font-size, (320px: 14px, 1024px: 15px), true);
+        
+            &::before {
+                content: url(../images/header_dot.png);
+                position: absolute;
+                bottom: 3px;
+                left: -15px;
+            }
+
+            & + & {
+                margin-left: 40px;
+
+                @media (max-width:767px) {
+                    margin-left: 0;
+                    margin-top: 20px;
+                }
+            }
+
+            a {
+                color: #373737;
+                
+                &:hover {
+                    color: $primary-green;
+                }
+            }
+        }
+    }
+}

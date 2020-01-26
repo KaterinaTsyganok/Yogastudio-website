@@ -1,0 +1,55 @@
+@mixin grid($grid-column-start, $grid-column-end, $grid-row-start, $grid-row-end) {
+    grid-column-start: $grid-column-start;
+    grid-column-end: $grid-column-end;
+    grid-row-start: $grid-row-start;
+    grid-row-end: $grid-row-end;
+};
+
+@mixin flex($justify-content, $align-items, $flex-direction: row, $display: flex) {
+    justify-content: $justify-content;
+    align-items: $align-items;
+    flex-direction: $flex-direction;
+    display: $display;
+}
+
+@mixin media-min($width) {
+    @media only screen and (min-width: $width) {
+      @content;
+    }
+}
+  
+@mixin media-max($width) {
+    @media only screen and (max-width: $width) {
+      @content;
+    }
+}
+  
+@mixin media-lock($width-min, $width-max) {
+    @media only screen and (min-width: #{$width-min}) and (max-width: #{$width-max}) {
+      @content;
+    }
+}
+  
+@mixin locked-prop($prop, $value-map, $is-media-extended: false) { // @include locked-prop(font-size, (320px: 14px, 1024px: 31px), true);
+    $width-min: nth(map-keys($value-map), 1);
+    $width-max: nth(map-keys($value-map), 2);
+    $value-max: map-get($value-map, $width-max);
+    $value-min: map-get($value-map, $width-min);
+    $values-diff: $value-max - $value-min;
+    $widths-diff: $width-max - $width-min;
+    $m: $values-diff / $widths-diff;
+    $b: $value-max - $m * $width-max;
+    $y: $m + $b;
+  
+    @include media-lock($width-min, $width-max) {
+      #{$prop}: calc(#{$m*100}vw + #{$b});
+    }
+    @if $is-media-extended {
+      @include media-min($width-max) {
+        #{$prop}: $value-max;
+      }
+      @include media-max($width-min) {
+        #{$prop}: $value-min;
+      }
+    }
+}

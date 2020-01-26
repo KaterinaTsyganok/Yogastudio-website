@@ -1,0 +1,118 @@
+.main-about {
+    &-top {
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: $primary-blue;
+        }
+
+        .description {
+            text-align: center;
+            font-weight: 300;
+            @include locked-prop(line-height, (320px: 24px, 1024px: 33px), true);
+            @include locked-prop(font-size, (320px: 14px, 1024px: 18px), true);
+        }
+    }
+
+    .swiper {
+        &-container {
+            margin: 20px 0;
+            max-width: 100%;
+        }
+
+        &-slide {
+            text-align: center;
+
+            img {
+                max-width: 100%;
+            }
+
+            p {
+                margin-top: 20px;
+                margin-bottom: 40px;
+                color: #717477;
+                font-size: 28px;
+                font-style: italic;
+            }
+        }
+
+        &-pagination {
+            bottom: 5px;
+
+            &-bullet {
+                width: 10px;
+                height: 10px; 
+
+                &-active {
+                    background: $primary-green;
+                }
+            }
+        }
+
+        &-button-prev {
+            background-image: url('../images/slider-arrow.png');
+            background-size: 30px 50px;
+            left: 15px;
+            outline: none;
+        }
+
+        &-button-next {
+            background-image: url('../images/slider-arrow.png');
+            transform: rotate(180deg);
+            background-size: 30px 50px;
+            right: 15px;
+            outline: none;
+        }
+
+        &-scrollbar {
+            display: none;
+        }
+    }
+
+    .advantage {
+        min-height: 210px;
+        background-color: $primary-blue;
+
+        .content {
+            @include flex(space-around, center);
+            flex-wrap: wrap;
+            height: 200px;
+
+            @include media-max(767px) {
+                @include locked-prop(height, (320px: 350px, 1024px: 450px), true);
+            }
+        }
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            width: 23.33%;
+            font-style: italic;
+            line-height: 40px;
+            margin: 10px 5%;
+            text-align: center;
+            @include locked-prop(font-size, (320px: 26px, 1024px: 42px), true);
+
+            @include media-max(767px) {
+                width: 96%;
+                margin: 10px 2%;
+                justify-content: center;
+            }
+
+            span {
+                @include locked-prop(font-size, (320px: 42px, 1024px: 72px), true);
+                color: #ffffff;
+                margin-bottom: 20px;
+
+                @include media-max(767px) {
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+}

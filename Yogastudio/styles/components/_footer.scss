@@ -1,0 +1,96 @@
+.footer {
+
+    font: 400 20px/1.2em 'Noto sans';
+
+    @include media-max(767px) {
+        font-size: 16px;
+    }
+
+    &__top {
+        height: 153px;
+        background-color: #07273b;
+        @include flex(space-between, center, column);
+        padding: 40px 0 15px;
+
+        @include media-max(767px) {
+            flex-direction: row;
+            padding: 0;
+        }
+    }
+
+    &__nav-list {
+        display: flex;
+        color: #c4e1e9;
+        text-transform: uppercase;
+
+        @include media-max(767px) {
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        &-item {
+            position: relative;
+
+            @include media-max(767px) {
+                margin-left: 50px;
+
+                &::before {
+                    content: '::';
+                    position: absolute;
+                    left: -30px;
+                    bottom: 2px;
+                }
+            }
+
+            & + & {
+                margin-left: 50px;
+
+                &::before {
+                   content: '::';
+                   position: absolute;
+                   left: -30px;
+                   bottom: 2px;
+                }
+            } 
+
+            a {
+                color: #c4e1e9;;
+                
+                &:hover {
+                    color: $primary-green;
+                }
+            }
+        }
+    }
+
+    .social {
+        @include media-max(767px) {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        img {
+            transition: 0.2s;
+
+            @include media-max(767px) {
+                width: 80%;
+            }
+        
+            &:hover {
+                margin-bottom: 2px;
+
+                @include media-max(767px) {
+                    margin-bottom: 0px;
+                }
+            }
+        }
+    }
+    
+    &__bottom {
+        height: 40px;
+        background-color: #212121;
+        color: #7e7e7e;
+        font-size: 12px;
+        @include flex(center, center);
+    }
+}
